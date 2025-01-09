@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: cd-album-list
+  name: cd-album-list
+  namespace: default
+spec:
+  containers:
+    - name: django
+      image: cd-album-list:latest
+      imagePullPolicy: IfNotPresent
+      resources:
+        requests:
+          cpu: 150m
+          memory: 256Mi
+      ports:
+        - containerPort: 8000
+          protocol: TCP
+      readinessProbe:
+        httpGet:
+          path: /1
+          port: 8000
+          scheme: HTTP
+        periodSeconds: 10
+        failureThreshold: 3
+        successThreshold: 1
+        timeoutSeconds: 1
+  restartPolicy: Always
