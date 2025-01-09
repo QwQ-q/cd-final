@@ -5,5 +5,5 @@ COPY . /opt/cd-album-list
 
 
 RUN pip install -r requirements.txt
-EXPOSE 18009
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:18009"]
+EXPOSE 8000
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
